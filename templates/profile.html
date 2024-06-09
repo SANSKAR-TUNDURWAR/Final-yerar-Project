@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+	        background: radial-gradient(circle, rgba(23,84,179,1) 35%, rgba(9,5,66,1) 100%);
+            background-size:auto; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height:fit-content; 
+        }
+        
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out; /* Animation for fade-in effect */
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            animation: slideInDown 1s ease-out; /* Animation for slide-in from top */
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #fff; /* White color for links */
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #585d69; /* Dark grey hover color */
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: rgb(83 121 136 );
+            font-size: 40px;
+            animation: fadeInUp 1s ease-out; /* Animation for fade-in from bottom */
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            animation: slideInLeft 1s ease-out; /* Animation for slide-in from left */
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        label {
+            margin-top: 10px;
+            color: #333; /* Dark grey label color */
+        }
+        
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            background-color:  #3b628a;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+            -webkit-box-shadow:0px 0px 100px 0px #98c5dc ;
+        -moz-box-shadow:0px 0px 100px 0px #98c5dc ;
+        box-shadow:0px 0px 100px 0px #98c5dc ;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-out; /* Animation for fade-in effect */
+        }
+        
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            animation: slideInUp 1s ease-out; /* Animation for slide-in from bottom */
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container a{
+            background-color:  #3b628a;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+            -webkit-box-shadow:0px 0px 100px 0px #98c5dc ;
+        -moz-box-shadow:0px 0px 100px 0px #98c5dc ;
+        box-shadow:0px 0px 100px 0px #98c5dc ;
+        }
+        .abhisek{
+            display: flex;
+            flex-direction: column;
+        }
+        .kankatemc{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+        }
+        .arayan{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width:40%;
+
+        }
+    </style>        
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="javascript:history.back()" style="background-color: #585d69;">Back</a>
+            <a href="{{ url_for('logout') }}" style="background-color: #585d69;">Logout</a>
+        </nav>
+        <h1>User Profile</h1>
+        <form method="POST">
+            <div class="abhisek">
+                <div class="kankatemc">
+                    <div class="arayan">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="{{ user['username'] }}" required><br>
+                    </div>
+                    <div class="arayan">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{ user['email'] }}" required><br>
+                    </div>
+                    
+                    
+                </div>
+                <div class="kankatemc">
+                    <div class="arayan">
+                        <label for="phone_no">Phone No:</label>
+                        <input type="text" id="phone_no" name="phone_no" value="{{ user['phone_no'] }}" required><br>
+                    </div>
+                    <div class="arayan">
+                        <label for="R_address">Address:</label>
+                        <input type="text" id="R_address" name="R_address" value="{{ user['R_address'] }}" required><br>
+                    </div>
+                    
+                    
+                </div>
+                <div class="kankatemc">
+                    <div class="arayan">
+                        <label for="gender">Gender:</label>
+                        <input type="text" id="gender" name="gender" value="{{ user['gender'] }}" required><br>
+                    </div>
+                    <div class="arayan">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" value="{{ user['age'] }}" required><br>
+                    </div>
+                    
+                   
+                </div>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" value="{{ user['dob'] }}" required><br>
+            </div>
+           
+            
+           
+            
+            <button type="submit">Update Details</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
